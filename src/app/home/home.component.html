@@ -1,0 +1,54 @@
+<div class="container color-dark">
+	<div class="col">
+		<p>Add a new order</p>
+	</div>
+	<div class="col">
+		<p>All Orders ({{ orderCount }})</p>
+	</div>
+</div>
+<div class="container color-light">
+	<div class="col">
+		<p class="sm">Use this form below to add a new bucket list goal. What do you want to do</p>
+		
+		<form [formGroup]="orderForm" (ngSubmit)="addItem()">
+		
+			<input type="text" 
+		       class="form-control" 
+		       id="userId" placeholder="user id"
+		       formControlName="userId">
+
+		    <input type="number" 
+		       class="form-control" 
+		       id="quantity" placeholder="order quantity : kg"
+		       formControlName="quantity">
+
+		    <input type="number" 
+		       class="form-control" 
+		       id="unitPrice" placeholder="price per unit"
+		       formControlName="unitPrice">
+
+	       <input type="text" 
+		       class="form-control" 
+		       id="orderType" placeholder="Sell or Buy"
+		       formControlName="orderType">
+		    <button class="btn btn-primary" type="submit"         
+        		[disabled]="!orderForm.valid">Add new order</button>
+		</form>
+	</div>
+	<div class="col">
+		<p class="life-container" *ngFor="let order of orders" >
+		{{ 'order No.' + order.userId + ': ' + order.orderType + ' ' + order.quantity + 'kg for £' + order.unitPrice  }}
+		
+
+		<a class="right" (click)="removeItem(i)"> X </a>
+		</p>
+
+		
+	</div>
+	
+
+	
+
+	
+
+</div>
