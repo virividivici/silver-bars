@@ -1,0 +1,33 @@
+<div class="container-3 color-dark">
+	<div class="col col-3">
+		<h2>Orders Summery</h2>
+	</div>
+	<div class="col col-3">
+		 <h2>Sells</h2>
+	</div>
+	<div class="col col-3">
+		<h2>Buys</h2>
+	</div>
+</div>
+<div class="container-3 color-light">
+  
+	<div class="col">
+	   
+		<p class="life-container" *ngFor="let order of allOrders | filterByPrice">
+		{{ order.orderType + ': ' + order.total + 'kg for £' + order.unitPrice + ' [order No.' + order.orders + ']' }}
+		</p>
+	</div>
+
+	<div class="col">
+	   
+		<p class="life-container" *ngFor="let order of (allOrders | filter : 'orderType' : 'SELL') | sort:'unitPrice'" >
+	    {{ order.orderType + ': ' + order.quantity + 'kg for £' + order.unitPrice + ' [order No.' + order.userId + ']' }}
+	</p>
+	</div>
+
+	<div class="col">
+		<p class="life-container" *ngFor="let order of allOrders | filter : 'orderType' : 'BUY' | sort:'-unitPrice'" >
+	   {{ order.orderType + ': ' + order.quantity + 'kg for £' + order.unitPrice + ' [order No.' + order.userId + ']' }}
+	</p>
+	</div>
+</div>
